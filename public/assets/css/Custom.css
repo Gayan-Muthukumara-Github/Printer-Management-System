@@ -1,0 +1,434 @@
+/* https://fonts.google.com/specimen/Poppins?query=po */
+
+* {
+    font-family: 'Poppins' !important;
+}
+.navcolor{
+    background-color: #353746;
+}
+
+.image-cropper {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile-pic {
+  display: inline;
+  margin: 0 auto;
+  height: 35px;
+  width: auto;
+}
+
+.bell-cropper {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-bell-size {
+    display: inline;
+    margin: 0 auto;
+    height: 20px;
+    width: auto;
+}
+
+
+:root{
+    --topNavbarHeight:104px;
+}
+
+
+
+@media all and (min-width:992px) {
+    body{
+        overflow: auto !important;
+    }
+    main{
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 50px;
+        }
+
+}
+
+.mainii{
+    margin-top: var(--topNavbarHeight);
+    margin-left: 0px;
+    margin-right: 0px;
+    height:1000vh;
+    background-color: #f6f7f9;
+}
+
+.menubutton{
+    color: white;
+    background-color: white;
+}
+
+.hrdriver{
+    margin-bottom: 0em;
+    border-width: 1px;
+}
+
+.hrdriverTop{
+    margin-top: 0em;
+    border-width: 1px;
+}
+
+.hrdriverlink{
+    margin: 0em;
+    border-width: 1px;
+}
+
+
+.sideText {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 15px;
+    padding: 0; 
+    font-size: 12px;
+  }
+
+.sideactive{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0; 
+    background-color: gainsboro;
+}
+
+.sideactivehead{
+    background-color: gainsboro;
+}
+
+.btnmargin{
+    margin-right: 100px;
+}
+
+.navbottom{
+    background-color: white;
+}
+
+.mainbackground{
+    background-color: #f6f7f9;
+    overflow: auto !important;
+    height: calc(100% - var(--topNavbarHeight));
+}
+
+.mainbackgroundii{
+    background-color: #f6f7f9;
+    overflow: auto !important;
+    height: calc(100vh - var(--topNavbarHeight));
+}
+
+
+  
+  .radio-toolbar input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+  
+  .radio-toolbar label {
+      display: inline-block;
+      background-color:white;
+      font-size: 14px;
+  }
+  
+  .radio-toolbar input[type="radio"]:checked + label {
+      border-bottom: 2px solid #0d6efd;
+  }
+
+  .searchbtn {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border-right: 1;
+    border-top: 1;
+    border-bottom: 1;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.searchwhite{
+    background-color: white;
+}
+
+.searchtext{
+    border-left: 1;
+    border-top: 1;
+    border-bottom: 1;
+    border-right: 0;
+}
+
+.searchrow{
+    font-size: 10px;
+}
+.searchrowsub{
+    font-size: 9px;
+}
+
+.contractrow{
+    font-size: 12px;
+}
+
+.Contractrightrow{
+    font-size: 9px;
+}
+
+.Contractrightrowsub{
+    font-size: 6px;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+
+.inputfileaccording {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+  
+
+.contractrowborder{
+    margin: 1px;
+    border-top: 2px solid black;
+}
+
+.printerfontsize{
+    font-size: 14px;
+}
+
+.printertablefontsize{
+    font-size: 12px;
+}
+
+.printertumblinefontsize{
+    font-size: 10px;
+}
+
+.dispatchcontainer{
+    height: auto;
+}
+
+.dispatchcontainercolor{
+    background-color: #f6f7f9;
+}
+
+.dispatchcontainercontent{
+    background-color: white;
+}
+
+.dispatchcontainerdrop{
+    border: 0;
+}
+
+.dashboardcontaier{
+    background-color: #f6f7f9; 
+}
+
+.dashboardcontaierfont{
+    font-size: 30px;
+}
+
+.gap{
+    margin-top: 0em;
+    padding-top: 0em;
+}
+
+.indexback{
+    height: 100%;
+    width: 100%;
+}
+
+.imagesize{
+    margin: 0;
+    padding: 0;
+    height: 90vh;
+    width: auto;
+    vertical-align: text-top;
+}
+
+.tabContainer{
+ width: 100%;
+ height: 525px;
+}
+
+.tabContainer .buttonContainer{
+    height: 10%;
+    width: auto;
+    background-color: #f6f7f9;
+}
+
+.tabContainer .buttonContainer button{
+    width: 20%;
+    height: 100%;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    background-color: #f6f7f9;
+}
+
+.tabContainer .buttonContainer button:hover{
+    background-color: white;
+}
+
+.tabContainer .tabPanel{
+    padding: 10px;
+    height: 85%;
+    width: 100%;
+    box-sizing: border-box;
+    display: none;
+}
+
+input[type=text] {
+    background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 32px !important; font-size: 14px !important;
+}
+
+input[type=number] {
+    background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 32px !important;font-size: 14px !important;
+}
+
+input[type=email] {
+    background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 32px !important;font-size: 14px !important;
+}
+
+input[type=date] {
+    background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 32px !important;font-size: 14px !important;
+}
+
+input[type=password] {
+    background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 32px !important;font-size: 14px !important;
+}
+
+input[type=file] {
+    background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 32px !important;font-size: 14px !important;
+}
+select {
+    background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 32px !important;font-size: 14px !important;
+}
+
+
+
+.alert {
+    padding: 2px;
+    border: 1px solid #f6f7f9;
+  }
+  .role-alert {
+    padding: 2px;
+    border: 1px solid #f6f7f9;
+    display: none;
+  }
+  
+  
+  .closebtn {
+    margin-left: 5px;
+    color:#353746;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+
+
+  .indicator{
+      height: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      display: none;
+  }
+
+  .indicator span{
+      width:100%;
+      height: 100%;
+      background: lightgrey;
+      border-radius: 5px;
+      position: relative;
+  }
+
+  .indicator span .medium{
+        margin: 0 3px;
+}
+
+.indicator span.active:before{
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.indicator span.weak:before{
+    background-color: #00B050;
+}
+
+.indicator span.medium:before{
+    background-color: #00B050;
+}
+
+.indicator span.strong:before{
+    background-color: #00B050;
+}
+
+.text{
+    font-size: 9px;
+    display: none;
+}
+
+
+.contractcard{
+    font-size: 12.4px;
+}
+.main-header{
+    font-size: 24px !important;
+    font-weight: 650 !important;
+}
+
+.sub-header{
+    font-size: 18px !important;
+}
+
+.printertumblinefontsize{
+    font-size: 12px !important;
+}
+
+.mps-login{
+    font-weight: 600;
+}
+
+.sign-in-page{
+    font-weight: 600;
+    margin-bottom: 0.9rem !important;
+}
+.no-data{
+    height: 50vh;
+}
+
+.searchbutton{
+    height: 32px !important;
+}
+.card{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.request-card{
+    background-color: #f6f7f9;
+}
