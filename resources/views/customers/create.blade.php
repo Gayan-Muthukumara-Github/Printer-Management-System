@@ -43,14 +43,8 @@
                                 <input type="text" class="form-control" value="{{ old('company_address') }}" name="company_address" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;" required>
                             </div>
                                 <div class="col-md-4">
-                                <label for="city" class="form-label" style="font-size: 12.4px;">City</label>
-                                <input type="text" name="city" value="{{ old('city') }}" list="city" class="form-control" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;" required/>
-                                <datalist id="city">
-                                    <option>Colombo</option>
-                                    <option>Gampaha</option>
-                                    <option>Kaluthara</option>
-                                    <option>Galle</option>
-                                </datalist>
+                                <label for="city" class="form-label" style="font-size: 12.4px;">Branch</label>
+                                <input type="text" name="city" value="{{ old('city') }}" class="form-control" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;" required/>
                             </div>
                             <div class="col-md-4">
                                 <label for="type" class="form-label" style="font-size: 12.4px;">Company Type</label>

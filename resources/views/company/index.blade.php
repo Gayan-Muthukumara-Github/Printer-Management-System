@@ -6,8 +6,12 @@
         <main class="">
             <div class="m-3">
             <div class="row">
+                <div class=""><a href="index.php">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Uniform</strong></div>
+
                 <div class="col-sm-9 mainbackground">
+
                     <div class="mt-3 ml-2">
+
                         <div>
                             <h3 class="main-header" >Setup Your Company</h3>
                             <p style="font-size: 10px;">Enter details of companies that you want to grant access to Manage Print Services.</p>                            <div class="pb-2">

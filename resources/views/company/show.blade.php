@@ -6,6 +6,8 @@
         <main class="">
             <div class="m-3">
             <div class="row">
+                <div class="mb-1"><a href="index.php">Dashboard</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Company</strong></div>
+
                 <div class="col-sm-9 mainbackground">
                     <div class="mt-3 ml-2">
                         <div>

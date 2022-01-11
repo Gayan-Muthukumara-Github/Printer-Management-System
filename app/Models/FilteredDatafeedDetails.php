@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DatafeedDetails extends Model
+class FilteredDatafeedDetails extends Model
 {
     use HasFactory;
 
@@ -16,15 +16,15 @@ class DatafeedDetails extends Model
         'total_page_count',
         'mono_page_count',
         'colour_page_count',
-        'serial_number',
         'date',
+        'company_id',
+        'branch',
     ];
 
-    public function company_printer()
+    public function customer()
     {
-        return $this->belongsTo(CompanyPrinter::class, 'printer_id');
+        return $this->belongsTo(Customer::class, 'company_id');
     }
-
 
 
 }

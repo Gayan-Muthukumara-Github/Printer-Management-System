@@ -33,12 +33,12 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::resource('companies', CompanyController::class);
 Route::resource('roles', RoleController::class);
 Route::resource('users', UserController::class);
 Route::resource('rates', RatesController::class, ['only' => ['store', 'index']]);
 Route::resource('printers', PrinterCategolsController::class);
+Route::resource('data_feeds', DatafeedsController::class);
 Route::resource('customers', CustomersController::class);
 Route::get('/contracts/{id}/rate-crad', [ContractsController::class, 'ratecrad']);
 Route::get('/contracts/{id}/printers', [ContractsController::class, 'printers']);
@@ -46,12 +46,11 @@ Route::post('/contracts/{id}/bulk_printers', [ContractsController::class, 'bulk_
 Route::get('/contracts/{id}/check_printers', [ContractsController::class, 'check_printers']);
 Route::post('/contracts/{id}/add_ratecrad', [ContractsController::class, 'add_ratecrad']);
 Route::get('/contracts/{id}/ratecrad/{ratecard}', [ContractsController::class, 'contract_ratecard']);
-Route::resource('/datafeed', DatafeedsController::class, ['only' => ['store', 'index']]);
-
+Route::get('/datafeed', [DatafeedsController::class, 'index']);
+Route::post('/datafeed', [DatafeedsController::class, 'datafeed']);
 Route::resource('contracts', ContractsController::class);
-
-Route::get('/reports', [App\Http\Controllers\ReportsController::class, 'index']);
-Route::get('/reports/generate', [App\Http\Controllers\ReportsController::class, 'generate']);
+Route::get('/reports', [ReportsController::class, 'index']);
+Route::get('/reports/generate', [ReportsController::class, 'generate']);
 Route::resource('/pricelists', PriceListController::class);
 Route::get('/pricelists/toners/{printer}', [PriceListController::class, 'toners']);
 

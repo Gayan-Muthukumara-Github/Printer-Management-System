@@ -20,49 +20,27 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="reporttypes">Report Types</label>
-                                    <select id="reporttypes" name="reporttypes" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;" required>
-                                        <option value="group_wise_commitment_based" selected>Group wise invoicing - Commitment based on the averaging total prints on respective printer model</option>
-                                        <!-- <option value="company_wise_commitment_based">Company wise invoicing - Commitment based on the averaging total prints on respective printer model</option>
-                                        <option value="group_wise_minimum_commitment">Group wise invoicing - minimum commitment for every printer</option>
-                                        <option value="company_wise_minimum_commitment">Company wise invoicing - minimum commitment for every printer</option>
-                                        <option value="group_wise_total_minimum_commitment">Group wise invoicing - Total minimum commitment for entire printer fleet</option>
-                                        <option value="company_wise_total_minimum_commitment">Company wise invoicing - Total minimum commitment for entire printer fleet</option> -->
-                                    </select>
-                                </div>
-                                <div class="col-md-1">
-                                    <label for="select_groups">Year</label>
-                                    <select id="select_groups" name="year" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;">
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-1">
-                                    <label for="select_company">Month</label>
-                                    <select id="select_company" name="month" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;">
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="select_contract">Contract</label>
-                                    <select id="select_contract" name="contract_id" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;">
-                                        @foreach ($contracts as $contracts)
-                                            <option value="{{$contracts->id}}">{{$contracts->contract_id}}</option>
+                                <div class="col-md-4">
+                                    <label for="contractcustomers">Contarct Customers</label>
+                                    <select id="companyname" name="companyname" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;" required>
+                                        @foreach ($ccustomers as $cc)
+                                            <option value="{{$cc->company_name}}">{{$cc->company_name}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="select_groups">Date</label>
+                                    <input required class="form-control" type="date" name="date" id="date" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="select_contract">Contract</label>
+                                    <input type="email" class="form-control"  value="Scola" name="email" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;" readonly>
+{{--                                    <select id="select_contract" name="contract_id" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;">--}}
+{{--                                        @foreach ($contracts as $contracts)--}}
+{{--                                            <option value="{{$contracts->id}}">{{$contracts->contract_id}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
                                 </div>
                             </div>
                             <br>

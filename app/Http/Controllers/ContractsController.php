@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\Contract;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CompanyPrinter;
-use App\Models\TempCompanyPrinter;
 use App\Models\Printer;
 use App\Models\Ratecard;
 use App\Models\RatecardPrinter;
@@ -279,9 +278,10 @@ class ContractsController extends Controller
         if ($contract && Auth::user()->company_id == $contract->company_id) {
             // $printer_ids = CompanyPrinter::distinct('printer_id')->pluck('printer_id')->toArray();
             // $printers = Printer::whereIn('id', $printer_ids)->get();
+            $printers = CompanyPrinter::select('printer_model')->groupBy('printer_model')->get();
             return view('contracts.rate_card', [
                 'contract' => $contract,
-                'printers' => $contract->mainPrinters()
+                'printers' => $printers,
             ]);
         }
     }
@@ -290,7 +290,7 @@ class ContractsController extends Controller
     {
         $contract = Contract::find($id);
         if ($contract && Auth::user()->company_id == $contract->company_id) {
-            $printers = TempCompanyPrinter::where('contract_id', "=", $contract->id)->get();
+            $printers = CompanyPrinter::where('contract_id', "=", $contract->id)->get();
             $num_models = $printers->groupBy('printer_id')->count();
             $con_method = $printers->groupBy('con_method')->count();
             $num_department = $printers->groupBy('branch')->count();
@@ -323,22 +323,25 @@ class ContractsController extends Controller
         while (($row = fgetcsv($csvFile)) !== FALSE) {
             $printer = Printer::where([['company_id', "=", Auth::user()->company_id], ['model', "=", $row[1]]])->first();
             //if($printer){
-            $cprinter = TempCompanyPrinter::create([
+            $cprinter = CompanyPrinter::create([
                 "contract_id" => $contract->id,
                 "company_id" => Auth::user()->company_id,
                 "customer_id" => $contract->customer_id,
                 "serial_number" => $row[0],
                 "printer_model" => $row[1],
                 "status" => $row[3],
-                "dip_cost" => $row[4],
+                "dip_cost" => "N/A",
                 "branch" => $row[5],
-                "department" => $row[6],
-                "con_method" => $row[7],
-                "installation_at" => $row[8],
-                "start_page_count" => $row[9],
-                "start_page_count_color" => $row[10],
-                "duty_cycle" => $row[11],
-                "printer_id" => "N/A"
+                "department" => $row[7],
+                "con_method" => $row[8],
+                "installation_at" => $row[9],
+                "start_page_count" => $row[10],
+                "start_page_count_color" => $row[11],
+                "duty_cycle" => "N/A",
+                "printer_id" => "N/A",
+                "printer_checked" => 0,
+                "company_checked" =>0,
+                "company" => $row[6]
             ]);
             //}
         }
@@ -353,17 +356,33 @@ class ContractsController extends Controller
         $contract = Contract::find($id);
         $company_printers = Printer::get();
         foreach ($company_printers as $cp) {
-            $temp = DB::table('temp_company_printers')
-                ->select('temp_company_printers.id', 'printers.monthly_duty_cycle')
-                ->join('printers', 'temp_company_printers.printer_model', '=', 'printers.model')
+            $temp = DB::table('company_printers')
+                ->select('company_printers.id', 'printers.monthly_duty_cycle')
+                ->join('printers', 'company_printers.printer_model', '=', 'printers.model')
                 ->where('printer_model', '=', $cp->model)
                 ->get();
 
-
             foreach ($temp as $t) {
-                $affected = DB::table('temp_company_printers')
-                    ->where('id', $t->id)
-                    ->update(['duty_cycle' => $t->monthly_duty_cycle]);
+                $affected = DB::table('company_printers')
+                    ->where('id','=', $t->id)
+                    ->update(['duty_cycle' => $t->monthly_duty_cycle,'printer_id' => $cp->id,'printer_checked' => 1]);
+            }
+
+
+        }
+
+        $customer = Customer::get();
+        foreach ($customer as $cus) {
+            $temp1 = DB::table('company_printers')
+                ->select('company_printers.id')
+                ->join('customers', 'company_printers.branch', '=', 'customers.company_name')
+                ->where('branch', '=', $cus->company_name)
+                ->get();
+
+            foreach ($temp1 as $t) {
+                $affected = DB::table('company_printers')
+                    ->where('id','=', $t->id)
+                    ->update(['company_checked' => 1]);
             }
 
 
@@ -391,8 +410,8 @@ class ContractsController extends Controller
                 ];
             } elseif ($request->type == "ClickOnlyAvgTotPMode") {
                 $rules = array(
-                    "input_click_only_avarage_base_commitment" => 'present|array',
-                    "input_click_only_avarage_base_commitment1" => 'present|array',
+                    "input_click_only_avarage_base_printer_id" => 'present|array',
+//                    "input_click_only_avarage_base_commitment1" => 'present|array',
                     "input_click_only_avarage_monichrome" => 'present|array',
                     "input_click_only_avarage_color" => 'present|array',
                 );
@@ -497,13 +516,13 @@ class ContractsController extends Controller
                         ]);
                     }
                 } elseif ($request->type == "ClickOnlyAvgTotPMode") {
-                    for ($x = 0; $x < count($request->input_click_only_avarage_base_printe_model); $x++) {
-                        $printer = Printer::where([['company_id', "=", Auth::user()->company_id], ['model', "=", $request->input_click_only_avarage_base_printe_model[$x]]])->first();
+                    for ($x = 0; $x < count($request->input_click_only_avarage_base_printer_id); $x++) {
+                        $printer = Printer::where([['company_id', "=", Auth::user()->company_id], ['model', "=", $request->input_click_only_avarage_base_printer_id[$x]]])->first();
                         RatecardPrinter::create([
                             "ratecard_id" => $ratecard->id,
                             'printr_id' => $printer->id,
                             'commitment' => $request->input_click_only_avarage_base_commitment[$x],
-                            'commitment_1' => $request->input_click_only_avarage_base_commitment1[$x],
+//                            'commitment_1' => $request->input_click_only_avarage_base_commitment1[$x],
                             'monochrome' => $request->input_click_only_avarage_monichrome[$x],
                             'color' => $request->input_click_only_avarage_color[$x],
                         ]);

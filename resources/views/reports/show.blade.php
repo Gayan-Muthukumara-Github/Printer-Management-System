@@ -5,112 +5,286 @@
     <main class="">
         <div class="row">
             <div class="col-sm-12 mainbackground">
-                <div class="row g-3"> 
+                <div class="row g-3">
 
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="sub-header"></h5>
+                            <h1 class="sub-header display-1 " style="font-size: 45px;margin-left: 370px;">TAX
+                                INVOICE</h1>
                             <br>
                         </div>
                         <div class="col-md-12">
-                            <table style="width: 100%">
-                                <tr>
-                                    <td><h3>{{$contract->customer->company_name}}</h3></td>
-                                    <td><h1>TAX INVOICE</h1></td>
-                                </tr>
-                                <tr>
-                                    <td>{{$contract->customer->vat}}</td>
-                                    <td>Invoice Number</td>
-                                </tr>
-                                <tr>
-                                    <td>{{$contract->customer->company_address}}</td>
-                                    <td>Invoice Date</td>
-                                </tr>
-                                <tr><td>HP Managed Print Services</td><td></td></tr>
-                                <tr><td>Contract Period: </td><td>Immediately</td></tr>
-                                <tr><td></td><td></td></tr>
+                            <table style="width: 100%;font-size: 8pt;">
+                                @foreach($customer as $c)
+                                    <tr>
+                                        <td><span>Company :</span> {{$c->company_name}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Invoice Number : 01</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Vat :</span> {{$c->vat}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Date : {{$date_today}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Address :</span> {{$c->company_address}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Page No : 01</td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            <div class="col-md-12">
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                            <table style="font-size: 8pt;">
+                                @foreach($contract as $c)
+                                    <tr>
+                                        <td>Contract ID : {{$c->contract_id}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contarct Name : {{$c->name}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contarct Period :</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Billing Period :</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
                             </table>
                         </div>
-                        <table>
-                            <?php $total_amount = 0; ?>
-                            @foreach ($datafeed->droup_by_printer_model() as $detail)
-                                <tr>
-                                    <td><strong>{{$datafeed->com_printer($detail->printer_id)->model}}</strong></td>
-                                    <td><?php $units = $detail->total; ?></td>
-                                    <td><strong>{{ $units }} Units</strong></td>>
-                                    <td></td>
-                                </tr>
-                                <tr>total
-                                    <td></td>
-                                    <td><strong># Prints</strong></td>
-                                    <td><strong>Unit (LKR)</strong></td>
-                                    <td><strong>Total (LKR)</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Monthly invoice value for Monochrome Prints</td>
-                                    <td>
-                                        <?php $avg_mono = intval($datafeed->avarage_monochrome($detail->printer_id)); ?>
-                                        <?php $unit_price_mono = $ratecard->ratecard_printer_monochrome($avg_mono) ?>
-                                        @if($ratecard->type == "BaseClick")
-                                            {{$unit_price_mono->commitment}}
-                                        @else
-                                            {{$unit_price_mono->commitment_1}}
-                                        @endif
-                                    </td>
-                                    <td>{{$unit_price_mono->monochrome}}</td>
-                                    <td><?php $tot_mono = $datafeed->total_amount_mono($units, $unit_price_mono) ?> {{number_format($tot_mono,2)}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Monthly Invoice value for Color Prints</td>
-                                    <td>
-                                        <?php $avg_color = intval($datafeed->avarage_colour($detail->printer_id)); ?>
-                                        <?php $unit_price_colour = $ratecard->ratecard_printer_color($avg_color) ?>
-                                    @if($ratecard->type == "BaseClick")
-                                        {{$unit_price_colour->commitment}}
-                                    @else
-                                        {{$unit_price_colour->commitment_1}}
-                                    @endif
-                                    </td>
-                                    <td> {{$unit_price_colour->color}}</td>
-                                    <td><?php $tot_color = $datafeed->total_amount_colour($units, $unit_price_colour); ?>{{number_format($tot_color, 2)}}</td>
-                                </tr>
-                                <?php $total_amount = $total_amount + $tot_mono + $tot_color ?>
-                            @endforeach
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Sub Total</td>
-                                <td></td>
-                                <td>{{number_format($total_amount,2)}}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>8% Total</td>
-                                <td></td>
-                                <td>{{number_format(intval($total_amount) * 0.08,2) }}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><strong>Total Amount</strong></td>
-                                <td></td>
-                                <td><strong>{{number_format(intval($total_amount) + intval($total_amount) * 0.08,2)}}</strong></td>
-                            </tr>
-                        </table>
                         <div class="col-md-12">
                             <br>
                             <br>
                             <br>
+                            <h3 style="font-size: 8pt; ">Monthly invoice value for Monochrome Prints</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <table style="font-size: 8pt;" align="right">
+                                <tr>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th>#Of Units&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Base Value(LKR)&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Total Printouts&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Per Unit(LKR)&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Total Price(LKR)&nbsp;&nbsp;&nbsp;</th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                </tr>
+                                @foreach($invoice as $i)
+                                    <tr>
+                                        <td>{{$i->model}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->Num_PRNT}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->commitment}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->Tot_Mono}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->monochrome}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{number_format((float) $i->Tot_MonoCharges, 2, '.', '')}}
+                                            &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                            <div class="col-md-12">
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+
+                                <h3 style="font-size: 8pt; ">Monthly invoice value for Color Prints</h3>
+                            </div>
+                            <table style="font-size: 8pt; " align="right">
+                                <tr>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th>#Of Units&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Base Value(LKR)&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Total Printouts&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Per Unit(LKR)&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Total Price(LKR)&nbsp;&nbsp;&nbsp;</th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                    <th>
+                                        <hr>
+                                    </th>
+                                </tr>
+                                @foreach($invoice as $i)
+                                    <tr>
+                                        <td>{{$i->model}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->Num_PRNT}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->commitment}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->Tot_Color}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{$i->color}}&nbsp;&nbsp;&nbsp;</td>
+                                        <td style="text-align:right">{{number_format((float) $i->Tot_ColorCharges, 2, '.', '')}}
+                                            &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="col-sm-12">
+                            <table style="font-size: 8pt;" align="right">
+                                <tr>
+                                    <th>&emsp;</th>
+                                    <th>&emsp;</th>
+
+                                </tr>
+                                <tr>
+                                    <th>&emsp;</th>
+                                    <th>
+                                        <hr>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th>Sub Total</th>
+                                    <td>{{number_format((float) $subtotal, 2, '.', '')}}</td>
+                                </tr>
+                                <tr>
+                                    <th>&emsp;</th>
+                                    <th>
+                                        <hr>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th>8% Total</th>
+                                    <td>{{number_format((float) $tax, 2, '.', '')}}</td>
+                                </tr>
+                                <tr>
+                                    <th>&emsp;</th>
+                                    <th>
+                                        <hr>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th>Total Amount</th>
+                                    <td>{{number_format((float) $totalamount, 2, '.', '')}}</td>
+                                </tr>
+                                <tr>
+                                    <th>&emsp;</th>
+                                    <th>
+                                        <hr>
+                                    </th>
+
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="col-md-12" style="font-size: 8pt;">
+                            <h5>Cheques should be drawn in favor of " V S Information Systems (Pvt) Ltd.</h5>
+                            <h5>and Crossed "A/C payee Only".</h5>
+                            <p>..............................</p>
+                            <p>Signature of the customer / Authorized Signature</p>
+                            <p>Name:.........................</p>
+                            <p>Date:.........................</p>
                         </div>
                     </div>
                 </div>

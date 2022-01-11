@@ -50,36 +50,15 @@
                                     <!-- <label class="form-label" style="font-size: 12.4px;">Last updated on the : 25th of July 2021</label> -->
                                     <div class="row align-items-end">
                                         <div class="col-md-3">
-                                        <label for="select_groups">Year</label>
-                                            <select id="select_groups" name="year" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;">
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="select_company">Month</label>
-                                            <select id="select_company" name="month" class="form-select" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 11px;">
-                                                <option value="01">01</option>
-                                                <option value="02">02</option>
-                                                <option value="03">03</option>
-                                                <option value="04">04</option>
-                                                <option value="05">05</option>
-                                                <option value="06">06</option>
-                                                <option value="07">07</option>
-                                                <option value="08">08</option>
-                                                <option value="09">09</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                            </select>
+                                            <label for="select_company">Date</label>
+                                            <input required class="form-control" type="date" name="date" id="date" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
                                         </div>
                                         <div class="col-md-3">
                                             <label class="form-label" style="font-size: 12.4px;">Upload CSV file</label>
                                             <input required class="form-control" type="file" name="datafeedfile" id="inputFile" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
                                         </div>
                                         <div class="col-auto">
-                                            <button type="submit" class="btn btn-primary" style="height: 27px;font-size: 12.4px;">Update</button>
+                                            <button type="submit" class="btn btn-primary" style="height: 27px;font-size: 12.4px;">Upload</button>
                                         </div>
                                     </div>
                                 </div>
@@ -98,13 +77,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($datafeeds as $datafeed)
+{{--                                    @foreach($all_customers as $all_customer)--}}
                                     <tr>
-                                        <td>{{$datafeed->customer->company_name}}</td>
-                                        <td>{{$datafeed->customer->company_printers->count()}}</td>
-                                        <td>{{$datafeed->details->count()}}</td>
+                                        <td>{{$all_customers}}</td>
+                                        <td>{{$total_printers}}</td>
+                                        <td>{{$received_printers}}</td>
                                     </tr>
-                                    @endforeach
+{{--                                    @endforeach--}}
                                     
                                 </tbody>
                             </table>

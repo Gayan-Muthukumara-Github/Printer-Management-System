@@ -136,12 +136,15 @@
                                 <th rowspan="2" scope="col">Model</th>
                                 <th rowspan="2" scope="col">Status</th>
                                 <th rowspan="2" scope="col">Dip. Cost</th>
-                                <th rowspan="2" scope="col">Company/ Branch</th>
+                                <th rowspan="2" scope="col">Company</th>
+                                <th rowspan="2" scope="col">Branch</th>
                                 <th rowspan="2" scope="col">Department</th>
                                 <th rowspan="2" scope="col">Con. Method</th>
                                 <th rowspan="2" scope="col">Installation Date</th>
                                 <th colspan="2" scope="col">Start Page Count</th>
                                 <th rowspan="2" scope="col">Duty Cycle</th>
+                                <th rowspan="2" scope="col">Printer Checked</th>
+                                <th rowspan="2" scope="col">Company Checked</th>
                             </tr>
                             <tr>
                                 <th>B/W</th>
@@ -151,18 +154,29 @@
                         <tbody>
                             @foreach ($printers as $printer)
                                 <tr>
-                                    <th scope="row"> <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="..."></th>
+                                    <th scope="row"></th>
                                     <td>{{$printer->serial_number}}</td>
                                     <td>{{$printer->printer_model}}</td>
                                     <td>{{$printer->status}}</td>
                                     <td>{{$printer->dip_cost}}</td>
                                     <td>{{$printer->branch}}</td>
+                                    <td>{{$printer->company}}</td>
                                     <td>{{$printer->department}}</td>
                                     <td>{{$printer->con_method}}</td>
                                     <td>{{$printer->installation_at}}</td>
                                     <td>{{$printer->start_page_count}}</td>
                                     <td>{{$printer->start_page_count_color}}</td>
                                     <td>{{$printer->duty_cycle}}</td>
+                                    @if($printer->printer_checked == 1)
+                                        <td>✅</td>
+                                    @else
+                                        <td>❌</td>
+                                    @endif
+                                    @if($printer->company_checked == 1)
+                                        <td>✅</td>
+                                    @else
+                                        <td>❌</td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

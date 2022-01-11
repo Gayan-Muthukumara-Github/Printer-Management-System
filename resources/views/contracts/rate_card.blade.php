@@ -100,7 +100,7 @@
                                             <label for="inputPrinterModel" class="form-label"  style="font-size: 12.4px;">Printer Model</label>
                                             <select name="base_click_printr_id" type="text" class="form-select" id="ClickPrinterModel" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
                                                 @foreach ($printers as $printer)
-                                                    <option value="{{ $printer->id }}">{{ $printer->model }}</option>
+                                                    <option value="{{ $printer->id }}">{{ $printer->printer_model }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -128,14 +128,14 @@
                                     <br>
                                     <br>
                                     <div class="row">
-                                        <div class="col-md-9">                                    
+                                        <div class="col-md-9">
                                             <table class="table table-bordered" style="font-size: 11px;" name="data_table" id="data_table">
                                                 <thead>
-                                                    <th scope="col">Printer Model</th>
-                                                    <th scope="col">Base commitment</th>
-                                                    <th scope="col">Monochrome</th>
-                                                    <th scope="col">Color</th>
-                                                    <th scope="col"></th>
+                                                    <th scope="col" style="width:30%;">Printer Model</th>
+                                                    <th scope="col" style="width:10%;">Base commitment</th>
+                                                    <th scope="col" style="width:5%;">Monochrome</th>
+                                                    <th scope="col" style="width:5%;">Color</th>
+                                                    <th scope="col" style="width:5%;"></th>
                                                 </thead>
                                                 <tbody id="base_click_add_row_tbody">
                                                     
@@ -154,7 +154,7 @@
                                             <label for="inputPrinterModel" class="form-label"  style="font-size: 12.4px;">Printer Model</label>
                                             <select type="text" class="form-select" name="click_only_avarage_printer" id="inputPrinterModel" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
                                                 @foreach ($printers as $printer)
-                                                    <option value="{{ $printer->id }}">{{ $printer->model }}</option>
+                                                    <option value="{{ $printer->id }}">{{ $printer->printer_model }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -165,9 +165,9 @@
                                                     <div class="col">
                                                         <input type="text" class="form-control" name="click_only_avarage_base_commitment" id="ClickOnlyAvarageBaseCommitment" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
                                                     </div>
-                                                    <div class="col">
-                                                        <input type="text" class="form-control" name="click_only_avarage_base_commitment_1" id="ClickOnlyAvarageBaseCommitment1" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
-                                                    </div>
+{{--                                                    <div class="col">--}}
+{{--                                                        <input type="text" class="form-control" name="click_only_avarage_base_commitment_1" id="ClickOnlyAvarageBaseCommitment1" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -192,12 +192,11 @@
                                             <div class="col-md-9">                                    
                                                 <table class="table table-bordered" style="font-size: 11px;" name="data_table" id="data_table">
                                                     <thead>
-                                                        <th scope="col">Printer Model</th>
-                                                        <th scope="col">Min</th>
-                                                        <th scope="col">Max</th>
-                                                        <th scope="col">Monochrome</th>
-                                                        <th scope="col">Color</th>
-                                                        <th scope="col"></th>
+                                                        <th scope="col" style="width:30%;">Printer Model</th>
+                                                        <th scope="col" style="width:10%;">Commitment</th>
+                                                        <th scope="col" style="width:5%;">Monochrome</th>
+                                                        <th scope="col" style="width:5%;">Color</th>
+                                                        <th scope="col" style="width:5%;"></th>
                                                     </thead>
                                                     <tbody id="click_only_avarage_add_row_tbody">
                                                         
@@ -216,7 +215,7 @@
                                         <label for="inputPrinterModel" class="form-label"  style="font-size: 12.4px;">Printer Model</label>
                                         <select type="text" class="form-select" name="click_only_every_printer" id="inputClickOnlyPrinterModel" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
                                             @foreach ($printers as $printer)
-                                                <option value="{{ $printer->id }}">{{ $printer->model }}</option>
+                                                <option value="{{ $printer->id }}">{{ $printer->printer_model }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -254,12 +253,12 @@
                                     <div class="col-md-9">                                    
                                         <table class="table table-bordered" style="font-size: 11px;" name="data_table" id="data_table">
                                             <thead>
-                                                <th scope="col">Printer Model</th>
-                                                <th scope="col">Min</th>
-                                                <th scope="col">Max</th>
-                                                <th scope="col">Monochrome</th>
-                                                <th scope="col">Color</th>
-                                                <th scope="col"></th>
+                                                <th scope="col" style="width:30%;">Printer Model</th>
+                                                <th scope="col" style="width:10%;">Min</th>
+                                                <th scope="col" style="width:10%;">Max</th>
+                                                <th scope="col" style="width:5%;">Monochrome</th>
+                                                <th scope="col" style="width:5%;">Color</th>
+                                                <th scope="col" style="width:5%;"></th>
                                             </thead>
                                             <tbody id="click_olny_add_row_tbody">
                                                 
@@ -278,7 +277,7 @@
                                         <label for="inputPrinterModel" class="form-label"  style="font-size: 12.4px;">Printer Model</label>
                                         <select type="text" class="form-select" name="epf_printer" id="EpfPrinterModel" style="background-color: #F7F8FA;border: 1px solid #D5DAE5;height: 25.92px;font-size: 12.4px;">
                                             @foreach ($printers as $printer)
-                                                <option value="{{ $printer->id }}">{{ $printer->model }}</option>
+                                                <option value="{{ $printer->id }}">{{ $printer->printer_model }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -309,11 +308,11 @@
                                     <div class="col-md-9">                                    
                                         <table class="table table-bordered" style="font-size: 11px;" name="data_table" id="data_table">
                                             <thead>
-                                                <th scope="col">Printer Model</th>
-                                                <th scope="col">Total Mono Prints</th>
-                                                <th scope="col">Monochrome</th>
-                                                <th scope="col">Color</th>
-                                                <th scope="col"></th>
+                                                <th scope="col" style="width:30%;">Printer Model</th>
+                                                <th scope="col" style="width:10%;">Commitment</th>
+                                                <th scope="col" style="width:5%;">Monochrome</th>
+                                                <th scope="col" style="width:5%;">Color</th>
+                                                <th scope="col" style="width:5%;"></th>
                                             </thead>
                                             <tbody id="epf_add_row_tbody">
                                                 
@@ -384,7 +383,7 @@
         if($click_only_avarage_base_commitment != "" && $click_only_avarage_base_commitment_1 != "" && $click_only_avarage_monichrome != "" && $click_only_avarage_color != ""){
             $("#click_olny_add_row_tbody").append('<tr><td><input readonly type="text" class="form-control" name="input_click_only_every_printer[]" value="'+$printe_model+'"></td><td><input type="text" class="form-control" name="input_click_only_every_base_commitment[]" value="'+$click_only_avarage_base_commitment+'"></td><td><input type="text" class="form-control" name="input_click_only_every_base_commitment_1[]" value="'+$click_only_avarage_base_commitment_1+'"></td><td><input type="text" class="form-control" name="input_click_only_every_base_monochrome[]" value="'+$click_only_avarage_monichrome+'"></td><td><input type="text" class="form-control" name="input_click_only_every_base_color[]" value="'+$click_only_avarage_color+'"></td><td><button type="button" class="btn p-0 add" value="Add Row" onclick="delete_row(this);" style="font-size: 11px;"><i class="bi bi-trash-fill"></i></button></td></tr>');
             $("#inputClickOnlyCommitment").val(""); 
-            $("#inputClickOnlyCommitment_1").val(""); 
+            $("#inputClickOnlyCommitment_1").val("");
             $("#inputClickOnlyMonochrome").val("");
             $("#inputClickOnlyColor").val("");
         }else{
@@ -412,16 +411,16 @@
 
     function ClickOnlyAvgTotPMode(){
         console.log("412");
-        $printe_model = $("#inputClickOnlyPrinterModel").find(":selected").text();
+        $printe_model = $("#inputPrinterModel").find(":selected").text();
         $click_only_avarage_base_commitment = $("#ClickOnlyAvarageBaseCommitment").val(); 
         $click_only_avarage_base_commitment1 = $("#ClickOnlyAvarageBaseCommitment1").val(); 
         $click_only_avarage_monichrome = $("#ClickOnlyAvarageMonochrome").val(); 
         $click_only_avarage_color = $("#ClickOnlyAvarageColor").val();
         if($click_only_avarage_base_commitment != "" && $click_only_avarage_base_commitment1 != "" && $click_only_avarage_monichrome != "" && $click_only_avarage_color != ""){
             console.log("419")
-            $("#click_only_avarage_add_row_tbody").append('<tr><td><input treadonly type="text" class="form-control" name="input_click_only_avarage_base_printe_model[]" value="'+$printe_model+'"></td><td><input type="text" class="form-control" name="input_click_only_avarage_base_commitment[]" value="'+$click_only_avarage_base_commitment+'"></td><td><input type="text" class="form-control" name="input_click_only_avarage_base_commitment1[]" value="'+$click_only_avarage_base_commitment1+'"></td><td><input type="text" class="form-control" name="input_click_only_avarage_monichrome[]" value="'+$click_only_avarage_monichrome+'"></td><td><input type="text" class="form-control" name="input_click_only_avarage_color[]" value="'+$click_only_avarage_color+'"></td><td><button type="button" class="btn p-0 add" value="Add Row" onclick="delete_row(this);" style="font-size: 11px;"><i class="bi bi-trash-fill"></i></button></td</tr>');
+            $("#click_only_avarage_add_row_tbody").append('<tr><td><input treadonly type="text" class="form-control" name="input_click_only_avarage_base_printer_id[]" value="'+$printe_model+'"></td><td><input type="text" class="form-control" name="input_click_only_avarage_base_commitment[]" value="'+$click_only_avarage_base_commitment+'"></td><td><input type="text" class="form-control" name="input_click_only_avarage_monichrome[]" value="'+$click_only_avarage_monichrome+'"></td><td><input type="text" class="form-control" name="input_click_only_avarage_color[]" value="'+$click_only_avarage_color+'"></td><td><button type="button" class="btn p-0 add" value="Add Row" onclick="delete_row(this);" style="font-size: 11px;"><i class="bi bi-trash-fill"></i></button></td</tr>');
             $("#ClickOnlyAvarageBaseCommitment").val(""); 
-            $("#ClickOnlyAvarageBaseCommitment1").val(""); 
+            // $("#ClickOnlyAvarageBaseCommitment1").val("");
             $("#ClickOnlyAvarageMonochrome").val(""); 
             $("#ClickOnlyAvarageColor").val("");
         }else{

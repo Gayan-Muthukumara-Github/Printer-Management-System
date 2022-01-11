@@ -23,7 +23,11 @@ class CompanyPrinter extends Model
     "start_page_count",
     "duty_cycle",
     "contract_id",
-    "start_page_count_color"];
+    "start_page_count_color",
+        "printer_model",
+        "printer_checked",
+        "company_checked",
+        "company"];
 
 
 
